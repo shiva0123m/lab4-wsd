@@ -1,0 +1,36 @@
+<!DOCTYPE html>    
+ <html>    
+ <head>    
+   <title>Employee Details</title>    
+   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>    
+   <script type="text/javascript" src="school.js"></script>    
+ </head>    
+ <body ng-app="employeeApp">    
+   <div align="center"><p>Faculty Information</p></div>    
+   <div ng-controller="employeeCtrl">    
+     <table align="center" border="1">    
+       <tr>    
+         <th>ID</th>    
+         <th>Name</th>    
+         <th>Gender</th>
+         <th>Rating</th>
+         <th>DOJ</th>     
+         <th>Salary</th>    
+         <th>Bonus</th>    
+         <th>Total Salary</th>    
+       </tr>    
+       <tr ng-repeat="employee in employees|orderBy:'doj'">    
+         <td>{{employee.id}}</td>    
+         <td>{{employee.name|uppercase}}</td>    
+         <td>{{employee.gender|lowercase}}</td>   
+         <td>{{employee.doj|date:"dd/MM/yyyy"}}</td>   
+         <td>{{employee.salary|currency : "₹" :2}}</td>    
+         <td>{{employee.bonus|currency : "₹" :0}}</td>    
+         <td>{{(employee.salary)+(employee.bonus)|currency : "₹" :2}}</td>    
+       </tr>    
+     </table>    
+   </div>    
+ </body>    
+ </html>    
+
+ 
