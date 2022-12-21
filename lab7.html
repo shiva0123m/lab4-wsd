@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <style>
+          table td,th
+            {
+            text-align: center;
+            border-radius:20px;
+            background-color: antiquewhite;
+            font-size: 20px;
+            transition: 0.2ms;
+            }
+            table
+            {
+            text-align: center;
+            }
+            table td:hover ,th:hover
+            {
+                transform: scale(1.25);
+                cursor: pointer;
+            }
+    </style>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+ <body style="font-family:Century Gothic;margin:0;" class="backg">
+        <div style="background-color: rgb(3, 137, 3);border-radius: 5px;"><font style="font-weight: bolder;font-size:35px;"><center>forestonline.go</center></font></div>
+    <div ng-app="myApp" ng-controller="myController" align="center">
+
+        <!--THE SEARCH BOX-->
+        <h1> Forest Fires (2008-2011)</h1>
+        <font style="font-size: 25px;">Search&emsp;</font><input type="Search" ng-model="search" 
+            placeholder="Enter text to search" /><img src=""><br><br>
+
+        <table>
+            <tr>
+                <th>State</th>
+                    <th>2010-2011</th>
+                        <th>2009-2010</th>
+                            <th>2008-2009</th>
+            </tr>
+
+            <!--TABLE ROWS WITH A FILTER-->
+            <tr ng-repeat="fires in forest | filter : search">
+
+                <td>{{fires.id}}</td>
+                    <td>{{fires.name}}</td>
+                        <td>{{fires.gender}}</td>
+                            <td>{{fires.salary}}</td>
+                            <td>{{fires.bonus}}</td>
+                            
+                                
+            </tr>
+        </table>
+    </div>
+</body>
+<script>
+    angular.module("myApp", [])
+        .controller('myController', ['$scope', function ($scope) {
+
+            // JSON ARRAY OBJECT.
+            $scope.forest =
+            [{
+   "id":106,
+   "name":"Anna",
+   "doj":"2016-10-05",
+   "gender":"Male",
+   "salary":50000.779,
+   "bonus":1000.776
+   },
+   {
+      "id":104,
+      "name":"Sona",
+   "doj":"2013-06-06",
+   "gender":"Female",
+   "salary":80000.889,
+   "bonus":900.776
+},
+   {
+      "id":102,
+      "name":"Archana",
+   "doj":"2012-08-19",
+   "gender":"Male",
+   "salary":70000.778,
+   "bonus":500.776
+   },
+   {
+      "id":100,
+      "name":"Ashitha",
+      "doj":"2000-21-08",
+      "gender":"Female",
+      "salary":100000.778,
+      "bonus":3000.776
+   },
+   {
+      "id":103,
+      "name":"Ravi",
+      "doj":"2006-11-06",
+      "gender":"Male",
+      "salary":120000.667,
+      "bonus":1000.776
+   },
+   {
+      "id":107,
+      "name":"Aleena",
+      "doj":"2005-21-05",
+      "gender":"Female",
+      "salary":80000.776,
+      "bonus":800.776
+   },
+   {
+      "id":105,
+   "name":"Arathi",
+   "doj":"2016-10-06",
+   "gender":"Female",
+   "salary":40000.776,
+   "bonus":700.776
+},
+   {
+      "id":101,
+      "name":"Ria",
+   "doj":"2018-21-11",
+   "gender":"Female",
+   "salary":35000.776,
+   "bonus":1500.776
+}
+   ]
+
+        } ]);
+</script>
+</html>
