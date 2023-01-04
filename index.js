@@ -1,61 +1,49 @@
+const express = require('express');
+const fs = require('fs');
+
+const app = express();
+const port = 3000;
+
+// //Store Your JSON file in Local Host (Implement FS module in order to read the JSON file)
+app.get('/json', (req, res) => {
+  fs.readFile('data.json', (err, data) => {
+    if (err) throw err;
+    res.send(data);
+  });
+});
+
+//Perform read and write operation on JSON in the server side
+// app.get('/json', (req, res) => {
+//   fs.readFile('data.json', (err, data) => {
+//     if (err) throw err;
+//     const json = JSON.parse(data);
+//     json.email = 'abhirami23@gmail.com';
+//     json.phone_number = '9456239784';
+//     json.fav_book="gone with the wind";
+//     json.genre="romance";
+//     fs.writeFile('data.json', JSON.stringify(json), (err) => {
+//       if (err) throw err;
+//       res.send('JSON file updated');
+//     });
+//   });
+// });
+
+// //Manipulate the server response in the client side
+// //Implement Routing feature using NodeJS
+// app.get("/", (req, res) => {
+//   res.sendFile("index.html", { root: __dirname });
+// });
+
+// app.get("/json", (req, res) => {
+//   fs.readFile("data.json", (err, data) => {
+//     if (err) throw err;
+//     const json = JSON.parse(data);
+//     console.log(json);
+//     res.send(JSON.stringify(json));
+//   });
+// });
 
 
-var abc = angular.module("abc", ['ngRoute'])
-
-//router config
-abc.config(($routeProvider)=>{
-    $routeProvider
-    .when("/", {
-        templateUrl: './home.html',
-        controller: "homeCtrl"
-    })
-    .when("/about", {
-        templateUrl: './about.html',
-        controller:'aboutCtrl'
-    })
-    .when("/contact", {
-        templateUrl: './contact.html',
-        controller: "contactCtrl"
-    })
-})
-
-//controllers
-abc.controller("abcCtrl", ($rootScope, $http)=>{
-    //retrieve JSON file
-    $http.get("./user_list.json")
-    .success(function(response){
-        $rootScope.users = response
-        console.log("userJSON retrieved.")
-    })
-})
-
-abc.controller("homeCtrl", function($scope, $rootScope){
-    $rootScope.var = "Appointments"
-    $scope.message = "Done for today!"
-})
-abc.controller("aboutCtrl",function($scope,$rootScope, $http)
-{
-    $rootScope.var = "User Details"
-    //retrieve JSON file
-    $http.get("./user_list.json")
-    .success(function(response){
-        $rootScope.users = response
-        console.log("userJSON retrieved.")
-    })
-})
-abc.controller("contactCtrl", function($scope,$rootScope, $http){
-    $rootScope.var = "Search patients name"
-    $scope.message = "Search patients in list by name:"
-
-    search_name = document.getElementById("search_name")
-    search_name.addEventListener('keyup', ()=>{
-        if(search_name.value.trim() == "")
-        {
-            document.getElementById("search_table").style.display = "none"
-        }
-        else
-        {
-            document.getElementById("search_table").style.display = "table"
-        }
-    })
-})
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
